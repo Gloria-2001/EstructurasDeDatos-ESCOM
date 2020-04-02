@@ -1,0 +1,18 @@
+PROGRAMA EN PSEUDOCÓDIGO. 
+Escribir “INSTRUCCIONES: Introduce sólo números”; 
+Escribir “Elementos conjunto 1”;
+Introducir cuántos elementos del conjunto son;
+Se llena el primer arreglo con una lista de los elementos del conjunto; 
+Leer conjunto1; 
+Escribir “El conjunto 1 tiene %d elementos”; 
+Muestra la cantidad de elementos que tiene el conjunto 1; 
+Escribir “Elementos conjunto 2”; 
+Se llena el segundo arreglo con una lista de los elementos del conjunto; 
+Leer conjunto2; 
+Escribir “El conjunto 2 tiene %d elementos”; 
+Muestra la cantidad de elementos que tiene el conjunto 2; 
+Multiplica los conjuntos;
+Leer los arreglos conjunto1[i] y conjunto2[j]; 
+Escribir “Resultado (%d, %d)”; 
+Muestra los resultados en parejas; 
+Fin
