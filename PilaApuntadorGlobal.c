@@ -34,30 +34,30 @@ void meter(){
     struct nodo *nuevo=(struct nodo*)malloc(sizeof(struct nodo));
     nuevo->ptrSig=NULL;
     nuevo->dato=dato;
-    if(ptrCima1==NULL)
-        (ptrCima1)=nuevo;
+    if(*ptrCima2==NULL)
+        (*ptrCima2)=nuevo;
     else{
-        nuevo->ptrSig=(ptrCima1);
-        (ptrCima1)=nuevo;
+        nuevo->ptrSig=(*ptrCima2);
+        (*ptrCima2)=nuevo;
     }
 }
 
 int sacar(){
-    struct nodo *temp=ptrCima1;
-    dato=(ptrCima1)->dato;
+    struct nodo *temp=*ptrCima2;
+    dato=(*ptrCima2)->dato;
     if(temp->ptrSig==NULL){
 		free(temp);
-		ptrCima1=NULL;
+		(*ptrCima2)=NULL;
 	}
    else{
- 		ptrCima1=temp->ptrSig;
+ 		*ptrCima2=temp->ptrSig;
     	free(temp);
     }
     return dato;
 }
 
 void recorrer (){
-    struct nodo *temp=ptrCima1;
+    struct nodo *temp=*ptrCima2;
     if(temp==NULL)
         printf("PILA VACIA\n");
     else{
@@ -81,7 +81,7 @@ int main(){
             }
 		    //SACAR
             case 2:{
-    			if(ptrCima1==NULL)
+    			if(*ptrCima2==NULL)
             		printf("La pila esta vacia");
             	else 
                 	printf("El dato es %d\n",sacar());
