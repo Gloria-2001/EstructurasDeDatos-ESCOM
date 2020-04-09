@@ -39,22 +39,34 @@ struct nodo *CrearNodo(int dato1){
     return ptrnuevo; 
 }
 
-void meterPorIzquierda(struct nodo *ptrCimaIzq, int dato){
+void meterPorIzquierda(struct nodo *ptrCimaIzq, struct nodo *ptrCimaDer, int dato){
 	struct nodo *nuevo=CrearNodo(dato);
-	if(ptrCimaIzq->sig==NULL)
+	if(ptrCimaIzq==ptrCimaDer){
 		ptrCimaIzq->sig=nuevo;
+		nuevo->sig=ptrCimaDer;
+		ptrCimaDer->ant=nuevo;
+		nuevo->ant=ptrCimaIzq;
+	}
 	else{
 		nuevo->sig=ptrCimaIzq->sig;
+		ptrCimaIzq->sig->ant=nuevo;
+		nuevo->ant=ptrCimaIzq;
 		ptrCimaIzq->sig=nuevo;
 	}
 }
 
-void meterPorDerecha(struct nodo *ptrCimaDer, int dato){
+void meterPorDerecha(struct nodo *ptrCimaDer, struct nodo *ptrCimaIzq,int dato){
 	struct nodo *nuevo=CrearNodo(dato);
-	if(ptrCimaDer->ant==NULL)
+	if(ptrCimaIzq==ptrCimaDer){
+		ptrCimaIzq->sig=nuevo;
+		nuevo->sig=ptrCimaDer;
 		ptrCimaDer->ant=nuevo;
+		nuevo->ant=ptrCimaIzq;
+	}
 	else{
-		nuevo->sig=ptrCimaDer->ant;
+		nuevo->ant=ptrCimaDer->ant;
+		ptrCimaDer->ant->sig=nuevo;
+		nuevo->sig=ptrCimaDer;
 		ptrCimaDer->ant=nuevo;
 	}
 }
@@ -103,6 +115,8 @@ int main(){
     struct nodo *MiPtrCimaDer=(struct nodo*)malloc(sizeof(struct nodo));
 	MiPtrCimaIzq->sig=NULL;
 	MiPtrCimaDer->ant=NULL;
+	MiPtrCimaIzq->ant=NULL;
+	MiPtrCimaDer->sig=NULL;
     
     while (1){
         switch (menu()){
@@ -110,13 +124,13 @@ int main(){
             case 1:
                 printf("\nDato: ");
                 scanf("%d",&dato);
-                meterPorIzquierda(MiPtrCimaIzq,dato);
+                meterPorIzquierda(MiPtrCimaIzq,MiPtrCimaDer,dato);
             break;
             // Meter por la Derecha. 
             case 2:
                 printf("\nDato: ");
                 scanf("%d",&dato);
-                meterPorDerecha(MiPtrCimaDer,dato);
+                meterPorDerecha(MiPtrCimaDer,MiPtrCimaIzq,dato);
             break;
             // Sacar por la Izquierda.
             case 3:
