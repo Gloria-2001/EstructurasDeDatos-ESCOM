@@ -39,9 +39,10 @@ struct nodo *CrearNodo(int dato1){
     return ptrnuevo; 
 }
 
+
 void meterPorIzquierda(struct nodo *ptrCimaIzq, struct nodo *ptrCimaDer, int dato){
 	struct nodo *nuevo=CrearNodo(dato);
-	if(ptrCimaIzq==ptrCimaDer){
+	if(ptrCimaIzq->sig==NULL){
 		ptrCimaIzq->sig=nuevo;
 		nuevo->sig=ptrCimaDer;
 		ptrCimaDer->ant=nuevo;
@@ -57,7 +58,7 @@ void meterPorIzquierda(struct nodo *ptrCimaIzq, struct nodo *ptrCimaDer, int dat
 
 void meterPorDerecha(struct nodo *ptrCimaDer, struct nodo *ptrCimaIzq,int dato){
 	struct nodo *nuevo=CrearNodo(dato);
-	if(ptrCimaIzq==ptrCimaDer){
+	if(ptrCimaDer->ant==NULL){
 		ptrCimaIzq->sig=nuevo;
 		nuevo->sig=ptrCimaDer;
 		ptrCimaDer->ant=nuevo;
@@ -69,6 +70,15 @@ void meterPorDerecha(struct nodo *ptrCimaDer, struct nodo *ptrCimaIzq,int dato){
 		nuevo->sig=ptrCimaDer;
 		ptrCimaDer->ant=nuevo;
 	}
+}
+
+struct nodo *recorrer_ida(struct nodo *ptrCimaIzq,struct nodo *ptrCimaDer){
+	struct nodo *temp=ptrCimaIzq; 
+	while(temp->sig!=ptrCimaDer){
+        temp=temp->sig;
+        printf("%d ",temp->dato);
+    }
+	return temp;
 }
 
 int sacarPorIzquierda(struct nodo *ptrCimaIzq, int dato){//recorrer ida 
@@ -125,19 +135,21 @@ int main(){
                 printf("\nDato: ");
                 scanf("%d",&dato);
                 meterPorIzquierda(MiPtrCimaIzq,MiPtrCimaDer,dato);
+                recorrer_ida(MiPtrCimaIzq,MiPtrCimaDer);
             break;
             // Meter por la Derecha. 
             case 2:
                 printf("\nDato: ");
                 scanf("%d",&dato);
                 meterPorDerecha(MiPtrCimaDer,MiPtrCimaIzq,dato);
+                recorrer_ida(MiPtrCimaIzq,MiPtrCimaDer);
             break;
             // Sacar por la Izquierda.
             case 3:
 				if(MiPtrCimaIzq->sig==NULL)
                     printf("\n\tPila vacia\n");
                 else
-                    printf("\nSe saco el dato: %d\n",sacarPorIzquierda(MiPtrCimaIzq,dato));
+                    printf("\nSe saco el dato:%d\n",sacarPorIzquierda(MiPtrCimaIzq,dato));
             break;
             //Sacar por la Derecha.
             case 4:
