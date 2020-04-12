@@ -31,7 +31,7 @@ int menu(){
     Puede ser así o con un comentario largo antes o dentro de la función a explicar.
 */
 typedef struct{
-    int queue[maxCola];         // Cola de un tama�o de 10 elementos
+    int queue[maxCola];         // Cola de un tama�o de 10 elementos
     int pri;                    // Indice del primer dato de la cola
     int ult;                    // Indice del ultimo dato de la cola
     int elemCola;               // Numero de elementos insertados en la cola 
@@ -64,10 +64,10 @@ void enQueue(Cola *queue, int dato){  // Funcion para meter datos en la cola.
         printf("\nPila llena\n");     // se imprimirá que la pila esta llena. 
     }else if(estaVacia(queue)){       // De lo contrario y si se cumple la funcion estaVacia, 
         queue->queue[0]=dato;         // el elemento cero del arreglo va a ser el dato. 
-        queue->elemCola++;            // Despues, el numero de elementos ingresados va a aumentar de uno por uno, 
+        queue->elemCola++;            // Despues, el numero de elementos ingresados va a aumentar de uno, 
     }else{                            // De no cumplirse los if anteriores (si la cola no esta vacia ni llena),  
         queue->queue[queue->elemCola]=dato; // se va a agregar un elemento y ese sera el nuevo dato; 
-        queue->ult++;                       // el indice del ultimo elemento va a aumentar de uno por uno, conforme se metan los datos. 
+        queue->ult++;                       // el indice del ultimo elemento va a aumentar de uno, conforme se metan los datos. 
         queue->elemCola++;                  // Tambien el numero de elementos ingresados aumentara.
     }
 }
@@ -80,7 +80,7 @@ void deQueue(Cola *queue){      // Funcion para sacar datos de la Cola.
         printf("Elemento eliminado: %2d",queue->queue[queue->pri]); // Se va a imprimir, el elemento eliminado es x, y va a ser primer elemento metido.
         for(i=0;i<queue->elemCola-1;i++)         // Para cuando los elementos de la Cola se mantengan en 0 y se haya retirado el elemento mencionado anteriormente, 
             queue->queue[i]=queue->queue[i+1];   // El apuntador de la cola ahora se va a dirigir al otro elemento para sacarlo.
-        queue->elemCola--;      // Los elementos ingresados disminuiran uno por uno. 
+        queue->elemCola--;      // Los elementos ingresados disminuiran en uno. 
         queue->ult--;           // Tambien el que esta catalogado como ultimo elemento va a irse recorriendo. 
     }
 }
