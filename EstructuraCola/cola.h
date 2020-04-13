@@ -38,10 +38,11 @@ typedef struct{
 }Cola;
 
 void iniciarQueue(Cola *queue){ // Funcion para incializar la cola. 
+	int i;
     queue->elemCola=0;          // El numero de elementos ingresados hasta ahora en la cola es 0. 
     queue->pri=0;               // El indice del primer dato de la cola estara inicializado en 0. 
     queue->ult=0;               // El indice del ultimo dato de la cola estara inicializado en 0. 
-    for(int i=0;i<maxCola;i++)  // Mientras el indice de los elementos se mantenga entre el 0 y el maximo que admite (10) y aumente uno por uno,
+    for(i=0;i<maxCola;i++)  // Mientras el indice de los elementos se mantenga entre el 0 y el maximo que admite (10) y aumente uno por uno,
         queue->queue[i]=-1;     // la cola se va a inicializar en -1. 
 }
 
@@ -86,9 +87,10 @@ void deQueue(Cola *queue){      // Funcion para sacar datos de la Cola.
 }
 
 void barrelQueue(Cola *queue){      // Funcion para recorrer datos en la Cola. 
+	int i;
     if(estaVacia(queue))            // Si se cumple la funcion estaVacia, 
         printf("\nPila vacia");     // entonces se imprime que Pila vacia. 
     else                            // De lo contrario, 
-        for(int i=0;i<queue->elemCola;i++)      // Para los elementos insertados en la cola, aumentando uno por uno, 
+        for(i=0;i<queue->elemCola;i++)      // Para los elementos insertados en la cola, aumentando uno por uno, 
             printf("%3d ",queue->queue[i]);     // van a imprimirse con un espacio  de 3 numeros. 
 }

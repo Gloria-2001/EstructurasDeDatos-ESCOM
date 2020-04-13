@@ -81,12 +81,13 @@ struct nodo *recorrer_ida(struct nodo *ptrCimaIzq,struct nodo *ptrCimaDer){
 	return temp;
 }
 
-int sacarPorIzquierda(struct nodo *ptrCimaIzq, int dato){//recorrer ida 
+int sacarPorIzquierda(struct nodo *ptrCimaIzq, struct nodo *ptrCimaDer){//recorrer ida 
 	struct nodo *temp=ptrCimaIzq->sig;
-	dato=temp->dato;
-	if(ptrCimaIzq->sig->sig==NULL){
+	int dato=temp->dato;
+	if(ptrCimaIzq->sig->sig==ptrCimaDer){
 		free(temp);
 		ptrCimaIzq->sig=NULL;
+		ptrCimaDer->ant=NULL;
 	}
 	else{
 		ptrCimaIzq->sig=temp->sig;
@@ -95,12 +96,13 @@ int sacarPorIzquierda(struct nodo *ptrCimaIzq, int dato){//recorrer ida
 	return dato;
 }
 
-int sacarPorDerecha(struct nodo *ptrCimaDer, int dato){//recorrer vuelta 
+int sacarPorDerecha(struct nodo *ptrCimaDer, struct nodo *ptrCimaIzq){//recorrer vuelta 
 	struct nodo *temp=ptrCimaDer->ant;
-	dato=temp->dato;
-	if(ptrCimaDer->ant->ant==NULL){
+	int dato=temp->dato;
+	if(ptrCimaDer->ant->ant==ptrCimaIzq){
 		free(temp);
 		ptrCimaDer->ant=NULL;
+		ptrCimaIzq->sig=NULL;
 	}
 	else{
 		ptrCimaDer->ant=temp->ant;
@@ -149,14 +151,14 @@ int main(){
 				if(MiPtrCimaIzq->sig==NULL)
                     printf("\n\tPila vacia\n");
                 else
-                    printf("\nSe saco el dato:%d\n",sacarPorIzquierda(MiPtrCimaIzq,dato));
+                    printf("\nSe saco el dato:%d\n",sacarPorIzquierda(MiPtrCimaIzq,MiPtrCimaDer));
             break;
             //Sacar por la Derecha.
             case 4:
             	if(MiPtrCimaDer->ant==NULL)
                     printf("\n\tPila vacia\n");
                 else
-                    printf("\nSe saco el dato: %d\n",sacarPorDerecha(MiPtrCimaDer,dato));
+                    printf("\nSe saco el dato: %d\n",sacarPorDerecha(MiPtrCimaDer,MiPtrCimaIzq));
             break;
             //Pila Llena.
             case 5:

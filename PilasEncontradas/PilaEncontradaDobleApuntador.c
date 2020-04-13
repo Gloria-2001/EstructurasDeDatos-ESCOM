@@ -112,12 +112,12 @@ int sacarPorDerecha(struct nodo **ptrCimaDer, struct nodo **ptrCimaIzq){//recorr
 }
 
 void pilaVacia(struct nodo **ptrCimaIzq, struct nodo **ptrCimaDer){
-    if(*ptrCimaIzq!=*ptrCimaDer) 
+    if(*ptrCimaIzq==*ptrCimaDer) 
         printf("La pila esta Vacia\n");
 }
 
 void pilaLlena(struct nodo **ptrCimaIzq, struct nodo **ptrCimaDer){
-	if(*ptrCimaIzq==*ptrCimaDer)
+	if(*ptrCimaIzq!=*ptrCimaDer)
         printf("La pila esta Llena\n"); 
 }
 
