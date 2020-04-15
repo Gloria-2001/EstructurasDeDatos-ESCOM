@@ -48,26 +48,28 @@ char sacar(struct nodo *ptrCima){		// Solamente se recibe el apuntador como par�
 
 int main(){
 	struct nodo *MiPtrCima=(struct nodo*)malloc(sizeof(struct nodo));
-	char *frase=(char *)malloc(1000);	// Variable donde guardará la frase
-	int a,i;
+	char *frase=(char*)malloc(1000);	// Variable donde guardará la frase
+	int a=0;
+	int i=0;
 	int flag=1; 
 	MiPtrCima->ptrSig=NULL;
 	
 	printf("Este programa sirve para verificar si una frase es o no palindroma.\nIngrese frase sin espacios y todo en minusculas:\n");
 	gets(frase);
 	a=sizeof(frase);
+	printf("%d\n",a);
 
-	for(i=0;i<a;i++){
-		meter(MiPtrCima,frase[i]);	
+	while(frase[i]!= '\0'){
+		meter(MiPtrCima,frase[i]);
+		i++;
 	}
-
-	imprimir(MiPtrCima);
 	
-	for(i=0;i<a;i++){
-		if(frase[i]!=sacar(MiPtrCima)){
-			flag=0;
-			printf("No es un palindromo\n");
-		}
+	imprimir(MiPtrCima);
+	sacar(MiPtrCima);
+	
+	if(frase[i]!=sacar(MiPtrCima)){
+		flag=0;
+		printf("No es un palindromo\n");
 	}
 	
 	if(flag==1){
