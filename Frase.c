@@ -56,23 +56,18 @@ int main(){
 	
 	printf("Este programa sirve para verificar si una frase es o no palindroma.\nIngrese frase sin espacios y todo en minusculas:\n");
 	gets(frase);
-	a=sizeof(frase);
-	printf("%d\n",a);
 
 	while(frase[i]!= '\0'){
 		meter(MiPtrCima,frase[i]);
 		i++;
 	}
 	
-	imprimir(MiPtrCima);
-	
-	i=0;
-	while(frase[i]!= '\0'){
+	a=i;	// guarda el valor del tamaño de i que a su vez, representa el tamaño de la cadena
+	for(i=0;i<a;i++){
 		if(frase[i]!=sacar(MiPtrCima)){
-			i++;
 			flag=0;
 			printf("No es un palindromo\n");
-		break;
+			break;
 		}
 	}
 		
