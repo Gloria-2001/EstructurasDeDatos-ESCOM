@@ -65,13 +65,17 @@ int main(){
 	}
 	
 	imprimir(MiPtrCima);
-	sacar(MiPtrCima);
 	
-	if(frase[i]!=sacar(MiPtrCima)){
-		flag=0;
-		printf("No es un palindromo\n");
+	i=0;
+	while(frase[i]!= '\0'){
+		if(frase[i]!=sacar(MiPtrCima)){
+			i++;
+			flag=0;
+			printf("No es un palindromo\n");
+		break;
+		}
 	}
-	
+		
 	if(flag==1){
 		printf("Es un palindromo\n");
 	}		
