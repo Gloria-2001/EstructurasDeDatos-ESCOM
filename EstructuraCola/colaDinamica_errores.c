@@ -34,7 +34,7 @@ struct ptrCola{
     struct nodo *ult;       // Ultimo en la cola
 };
 
-struct ptrCola *miPtrCola      // Apuntador global
+struct ptrCola *miPtrCola;      // Apuntador global
 
 struct nodo *CrearNodo(int dato){                           // Crear nodo nuevo con un dato
 	struct nodo *ptrnuevo;
@@ -46,7 +46,7 @@ struct nodo *CrearNodo(int dato){                           // Crear nodo nuevo 
 
 void meterDato(int dato){                   // Ingresar datoa la cola
     struct nodo *nuevo=CrearNodo(dato);
-    if(miPtrCola->pri==NULL || miPtrCola->ult==NULL){   // si el apuntador de el primer y ultimo nodo son vacíos, entonces
+    if(miPtrCola->pri==NULL && miPtrCola->ult==NULL){   // si el apuntador de el primer y ultimo nodo son vacíos, entonces
         miPtrCola->pri=nuevo;                           // ambos apuntadores se dirigirán para al nuevo elemento
         miPtrCola->ult=nuevo;
     }else{                                              // Si no, vamos a tener que agregar el dato nuevo después del 
@@ -60,8 +60,23 @@ void recorrerCola(){                        // Recorre la cola
     do{                                     // Imprimiremos el dato de cada nodo que
         printf("%3d ",temp->pri->dato);     // se encuentra en la cola, y después nos dirigiremos
         temp->pri=temp->pri->sig;           // al siguiente, siempre y cuando el apuntador siguiente
-    }while(temp->pri->sig==NULL);           // del nodo sea diferente del vacío
+    }while(temp->pri->sig!=NULL);           // del nodo sea diferente del vacío
     printf("%3d\n",temp->pri->dato);        // Para finalmente impriir el ultimo dato
+}
+
+void sacarDato(){									//Funcion para sacar dato.
+	struct ptrCola *aux=miPtrCola;
+	int i;					
+	if(miPtrCola->pri && miPtrCola->ult==NULL)
+		printf("La pila est� vacia\n");
+	else{
+		printf("Elemento eliminado:%d\n",aux->pri->dato);
+		for(i=0;i<aux->ult;i++){
+			aux->pri=aux->pri->sig;
+			printf("Elemento eliminado:%d\n",aux->pri->dato);
+			aux->pri--;
+		}	
+	}
 }
 
 int menu(){
@@ -91,7 +106,7 @@ int main(){
             break;
             case 2:
                 printf("\n2. Sacar dato\n");
-                printf("Opcion no disponible");
+                sacarDato();
             break;
             case 3:
                 printf("\n3. Recorrer cola\nImpresion de datos (del primero al ultimo):\n\t");
