@@ -55,20 +55,24 @@ void meterDato(int dato){                   // Ingresar datoa la cola
     }
 }
 
-void recorrerCola(){                        // Recorre la cola 
-    struct ptrCola *temp=miPtrCola;         // Auxiliar del apuntador de la cola
-    do{                                     // Imprimiremos el dato de cada nodo que
-        printf("%3d ",temp->pri->dato);     // se encuentra en la cola, y después nos dirigiremos
-        temp->pri=temp->pri->sig;           // al siguiente, siempre y cuando el apuntador siguiente
-    }while(temp->pri->sig!=NULL);           // del nodo sea diferente del vacío
-    printf("%3d\n",temp->pri->dato);        // Para finalmente impriir el ultimo dato
+void recorrerCola(){                                    // Recorre la cola 
+    struct nodo *temp=miPtrCola->pri;                   // Auxiliar del apuntador de la cola
+    if(miPtrCola->pri==NULL && miPtrCola->ult==NULL){
+        printf("Pila vacia\n");
+    }else{
+        do{                                             // Imprimiremos el dato de cada nodo que
+            printf("%3d ",temp->dato);                  // se encuentra en la cola, y después nos dirigiremos
+            temp=temp->sig;                             // al siguiente, siempre y cuando el apuntador
+        }while(temp!=NULL);                             // del nodo sea diferente del vacío
+    }
+    printf("\n");
 }
 
 void sacarDato(){									//Funcion para sacar dato.
 	struct ptrCola *aux=miPtrCola;
 	int i;					
 	if(miPtrCola->pri && miPtrCola->ult==NULL)
-		printf("La pila est� vacia\n");
+		printf("La pila est� vacia\n");
 	else{
 		printf("Elemento eliminado:%d\n",aux->pri->dato);
 		for(i=0;i<aux->ult;i++){
