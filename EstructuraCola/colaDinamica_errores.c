@@ -70,11 +70,11 @@ void recorrerCola(){                                    // Recorre la cola
 
 void sacarDato(){									//Funcion para sacar dato.
 	struct nodo *aux=miPtrCola->pri;					
-	if(miPtrCola->pri && miPtrCola->ult==NULL)
+	if(miPtrCola->pri==NULL && miPtrCola->ult==NULL)
 		printf("La pila esta vacia\n");
 	else{
-			printf("Elemento eliminado:%d\n",aux->dato);
-			miPtrCola->pri=aux->sig;
+        printf("Elemento eliminado:%d\n\n",aux->dato);
+        miPtrCola->pri=aux->sig;
 	}	
 }
 
