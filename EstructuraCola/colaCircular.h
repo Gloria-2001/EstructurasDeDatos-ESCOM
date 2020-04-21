@@ -49,8 +49,8 @@ void meterCola(Cola *queue, int dato){
     }else if(ColaVacia(queue)){        
         queue->queue[0]=dato; 
     }else{                              
-		queue->queue[queue->elemCola]=dato;
-		queue->queue[i]=((queue->ult)+1)%6;
+		queue->queue[((queue->ult)+1)%6]=dato;
+		queue->queue[((queue->ult)+1)%6]=queue->elemCola;
     }
 }
 
