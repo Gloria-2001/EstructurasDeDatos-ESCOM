@@ -50,8 +50,8 @@ void meterCola(Cola *queue, int dato){
         queue->queue[0]=dato; 
 		queue->datosIngresados++;
     }else{                              
-		i=(queue->datosIngresados)%MaxCola;
-		queue->queue[i+(queue->pri)]=dato;
+		i=((queue->datosIngresados)+(queue->datosIngresados))%MaxCola;
+		queue->queue[i]=dato;
 		queue->datosIngresados++;
     }
 }
@@ -66,27 +66,15 @@ void recorrer(Cola *queue){
 		}
 	}
  
-int sacarCola(Cola *queue, int dato){                  
-    int i;
+int sacarCola(Cola *queue){                  
+    int dato;
 	if(ColaVacia(queue)){        
         printf("\nCola vacia");  
     }else{                      
-        printf("Elemento eliminado: %d",queue->queue[queue->pri]); 
-        queue->queue[queue->pri]=-1;
+        dato=queue->queue[queue->pri];
+		queue->queue[queue->pri]=-1; 
 		queue->pri=((queue->pri)+1)%MaxCola; 
 		queue->datosIngresados--;
 	}
 	return dato;
 }
-
-
-
-
-
-
-
-
-
-
-
-
