@@ -17,7 +17,7 @@ int main(){
             break;
             case 2:
                 printf("\n2. Sacar dato\n");
-                sacarCola(&cola00,dato);
+                printf("El dato eliminado es: %d\n",sacarCola(&cola00));
                 printf("\n");
             break;
             case 3:
