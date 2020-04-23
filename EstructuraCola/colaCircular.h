@@ -49,8 +49,16 @@ void meterCola(Cola *queue, int dato){
     }else if(ColaVacia(queue)){        
         queue->queue[0]=dato; 
 		queue->datosIngresados++;
-    }else{                              
-		i=((queue->datosIngresados)+(queue->datosIngresados))%MaxCola;
+    }else{
+		/*
+			Error:
+			i=((queue->datosIngresados)+(queue->datosIngresados))%MaxCola;
+
+			Corrección:
+			Te dije que era pri+datos, además, estaba en la imagen y el video que te pasé
+			Ponte más abusada, el video te estaba dando todo el algoritmo
+		*/
+		i=((queue->pri)+(queue->datosIngresados))%MaxCola;
 		queue->queue[i]=dato;
 		queue->datosIngresados++;
     }
@@ -62,7 +70,17 @@ void recorrer(Cola *queue){
         printf("\nCola vacia");     
     else                            
 		for(i=0;i<(queue->datosIngresados);i++){
-			printf("%d\t",queue[(i+(queue->pri))%(queue->datosIngresados)]);
+			/*
+				Error:
+				printf("%d\t",queue[(i+(queue->pri))%(queue->datosIngresados)]);
+
+				Correccion:
+				Recuerda que el valor en el que nos basamos es el tamaño de la cola,
+				por lo que el modulo debe de ser con respecto al MaxCola.
+				Ademas, no estabas dirigiendote al arreglo, solo decías que
+				el apuntador en una posición[j] tenía algo y lo debía imprimir
+			*/
+			printf("%d\t",queue->queue[i+((queue->pri))%(MaxCola)]);
 		}
 	}
  
