@@ -17,7 +17,7 @@ int main(){
             break;
             case 2:
                 printf("\n2. Sacar dato\n");
-                sacarCola(&cola00);
+                sacarCola(&cola00,dato);
                 printf("\n");
             break;
             case 3:
