@@ -26,6 +26,7 @@ struct Cola{
 
 int menu(){
 	int opc;
+    fflush(stdin);
     printf("\n1. Meter dato");
     printf("\n2. Sacar dato");
     printf("\n3. Recorrer cola");
@@ -38,6 +39,7 @@ int menu(){
 struct nodo *CrearNodo(struct dato *Dato1){
 	struct nodo *ptrnuevo;
 	ptrnuevo=(struct nodo*)malloc(sizeof(struct nodo));
+    ptrnuevo->Dato=(struct dato*)malloc(sizeof(struct dato));   // Te faltó reservar la memoria del apuntador dato dentro del nuevo nodo
 	strcpy(ptrnuevo->Dato->nombre,Dato1->nombre);
 	ptrnuevo->Dato->edad=Dato1->edad;
 	ptrnuevo->Dato->est=Dato1->est;
@@ -79,9 +81,9 @@ struct dato *sacarDato(struct Cola *queue,struct dato *datoOut){
 void recorrerCola(struct Cola *queue){
 	struct nodo *temp=queue->pri;
     do{
-        printf("%s es el nombre.\n",temp->Dato->nombre);
+        printf("\n%s es el nombre.\n",temp->Dato->nombre);
 		printf("%d es la edad\n",temp->Dato->edad);
-		printf("%f es la estatura\n",temp->Dato->est);
+		printf("%.2f es la estatura\n",temp->Dato->est);
 		printf("%c es el sexo\n",temp->Dato->sexo);
 		temp=temp->sig;
     }while(temp!=NULL);    
@@ -109,7 +111,6 @@ int main(){
 				fflush(stdin);
 				scanf("%c",&midato->sexo);
 				meterDato(cola00,midato);
-				break;
             break;
             case 2:
                 printf("\n2. Sacar dato\n");
@@ -120,7 +121,7 @@ int main(){
 					printf("Salio:\n");
 					printf("Nombre:%s\n",midato->nombre);
 					printf("Edad:%d\n",midato->edad);
-					printf("Estatura:%f\n",midato->est);
+					printf("Estatura:%.2f\n",midato->est);
 					printf("Sexo:%c\n",midato->sexo);
             break;
             case 3:
