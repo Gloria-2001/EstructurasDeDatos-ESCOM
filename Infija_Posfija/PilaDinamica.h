@@ -58,9 +58,11 @@ struct simbolo *sacar(struct nodo *ptrCima){
 	if(ptrCima->ptrSig->ptrSig==NULL){
 		free(temp);
 		ptrCima->ptrSig=NULL;
+        ptrCima->ptrAnt=NULL;
 	}
 	else{
 		ptrCima->ptrSig=temp->ptrSig;
+        ptrCima->ptrSig->ptrAnt=NULL;
 		free(temp);
 	}
 	return datoOut;//regresa el dato
