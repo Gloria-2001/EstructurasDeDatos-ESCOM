@@ -27,6 +27,12 @@ int main(){
                 simbEnt->prioridad=0;
                 meter(pila00,simbEnt);
             break;
+			case PARENT_OUT:
+				while(Pila_Vacia(pila00)==0){
+					simbEnt=sacar(pila00);
+					if(simbEnt->operador!=PARENT_IN)
+						printf("%c",simbEnt->operador);
+				}
             default:
                 printf("%c",expresion[i]);
             break;
