@@ -27,7 +27,6 @@ int main(){
                 simbEnt->prioridad=0;
                 meter(pila00,simbEnt);
             break;
-
             default:
                 printf("%c",expresion[i]);
             break;
