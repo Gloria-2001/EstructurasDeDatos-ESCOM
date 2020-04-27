@@ -11,6 +11,7 @@
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
     struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
+	simbEnt->simbolo=operador;
     char expresion[100];
     int i;
 
@@ -20,7 +21,7 @@ int main(){
     gets(expresion);
 
     for(i=0;expresion[i]!='\0';i++){
-       switch(expresion){
+       switch(simbEnt){
 		   case PARENT_IN:
 		   meter(pila00,simbEnt);
 		   break;
