@@ -2,8 +2,14 @@
 #include<stdlib.h>
 #include<string.h>
 
+struct simbolo{
+    char operador;  // Operador de la expresion
+    int prioridad;  // Prioridad del operador
+};
+
 struct nodo{
-	int simbolo;
+	struct nodo *ptrAnt;
+    struct simbolo *simb;
 	struct nodo *ptrSig;
 };
 
@@ -20,11 +26,18 @@ int menu(){
 	return a;
 }
 
-struct nodo *CrearNodo(int simbolo){
+void iniciarPila(struct nodo *ptrCima){
+    ptrCima->ptrAnt=NULL;
+    ptrCima->ptrSig=NULL;
+}
+
+struct nodo *CrearNodo(struct simbolo *s){
 	struct nodo *ptrNuevo;
 	ptrNuevo=(struct nodo*)malloc(sizeof(struct nodo));
-	ptrNuevo->simbolo=simbolo;
+    ptrNuevo->simb=(struct simbolo*)malloc(sizeof(struct simbolo));;
+	strcpy(ptrNuevo->simb->operador,s->operador);
     ptrNuevo->ptrSig=NULL;
+    ptrNuevo->ptrAnt=NULL;
 }
 
 void meter(struct nodo *ptrCima, int dato){
@@ -33,14 +46,15 @@ void meter(struct nodo *ptrCima, int dato){
 	if(ptrCima->ptrSig==NULL) 
 		ptrCima->ptrSig=nuevo;
 	else{
-		nuevo->ptrSig=ptrCima->ptrSig; 
+		nuevo->ptrSig=ptrCima->ptrSig;
+        ptrCima->ptrSig->ptrAnt=nuevo; 
 		ptrCima->ptrSig=nuevo;
 	}
 }
 
-int sacar(struct nodo *ptrCima){ 
+struct simbolo *sacar(struct nodo *ptrCima){ 
 	struct nodo *temp=ptrCima->ptrSig;
-	int dato=temp->simbolo; 
+	struct simbolo *datoOut=temp->simb;
 	if(ptrCima->ptrSig->ptrSig==NULL){
 		free(temp);
 		ptrCima->ptrSig=NULL;
@@ -49,7 +63,7 @@ int sacar(struct nodo *ptrCima){
 		ptrCima->ptrSig=temp->ptrSig;
 		free(temp);
 	}
-	return dato;//regresa el dato
+	return datoOut;//regresa el dato
 }
 
 void recorrer(struct nodo *ptrCima){
@@ -60,20 +74,13 @@ void recorrer(struct nodo *ptrCima){
 	else{
 		while(temp->ptrSig!=NULL){
 			temp=temp->ptrSig;
-			printf("%d",temp->simbolo);
+			printf("%c-%d ",temp->simb->operador,temp->simb->prioridad);
 		}
 	}
 }
 
 int Pila_Vacia(struct nodo *ptrCima){
 	if(ptrCima->ptrSig==NULL)
-		return 1;
-	else 
-		return 0;
-}
-
-int Pila_Vacia(struct nodo *ptrCima){
-	if(ptrCima->ptrSig!=NULL)
 		return 1;
 	else 
 		return 0;
