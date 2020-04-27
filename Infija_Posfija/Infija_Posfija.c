@@ -10,6 +10,16 @@
 
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
-    pila00->ptrSig=NULL;
+    struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
     char expresion[100];
+    int i;
+
+    iniciarPila(pila00);
+    
+    printf("Ingrese la expresion infija: ");
+    gets(expresion);
+
+    for(i=0;expresion[i]!='\0';i++){
+        
+    }
 }
