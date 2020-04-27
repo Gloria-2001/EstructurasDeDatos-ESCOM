@@ -34,13 +34,14 @@ void iniciarPila(struct nodo *ptrCima){
 struct nodo *CrearNodo(struct simbolo *s){
 	struct nodo *ptrNuevo;
 	ptrNuevo=(struct nodo*)malloc(sizeof(struct nodo));
-    ptrNuevo->simb=(struct simbolo*)malloc(sizeof(struct simbolo));;
-	strcpy(ptrNuevo->simb->operador,s->operador);
+    ptrNuevo->simb=(struct simbolo*)malloc(sizeof(struct simbolo));
+    ptrNuevo->simb->operador=s->operador;
+    ptrNuevo->simb->prioridad=s->prioridad;
     ptrNuevo->ptrSig=NULL;
     ptrNuevo->ptrAnt=NULL;
 }
 
-void meter(struct nodo *ptrCima, int dato){
+void meter(struct nodo *ptrCima,struct simbolo *dato){
 	struct nodo *nuevo;
 	nuevo=CrearNodo(dato);
 	if(ptrCima->ptrSig==NULL) 
