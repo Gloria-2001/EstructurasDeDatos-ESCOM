@@ -50,8 +50,8 @@ int main(){
 				}
 			break; 
 			case SUMA: case RESTA: case MULT: case DIV: case POT:
-				simbEnt->prioridad=obtenPrioridad(expresion[i]);
 				simbEnt->operador=expresion[i];
+				simbEnt->prioridad=obtenPrioridad(expresion[i]);
 			break;	
             default:
                 printf("%c",expresion[i]);
