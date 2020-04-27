@@ -7,12 +7,25 @@
 #define PARENT_IN '('
 #define PARENT_OUT ')'
 
-int obtenPrioridad(char operador);
+int obtenPrioridad(char operador){
+	switch(operador){
+		case SUMA: case RESTA:
+			return 1;
+		break;
+		case MULT: case DIV:
+			return 2;
+		break;
+		case POT:
+			return 3;
+		break; 
+	}
+}
 
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
     struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
     char expresion[100];
+	char operador;
     int i;
 
     iniciarPila(pila00);
@@ -32,7 +45,14 @@ int main(){
 					simbEnt=sacar(pila00);
 					if(simbEnt->operador!=PARENT_IN)
 						printf("%c",simbEnt->operador);
+					else 
+						break; 
 				}
+			break; 
+			case SUMA: case RESTA: case MULT: case DIV: case POT:
+				simbEnt->prioridad=obtenPrioridad(expresion[i]);
+				simbEnt->operador=expresion[i];
+			break;	
             default:
                 printf("%c",expresion[i]);
             break;
