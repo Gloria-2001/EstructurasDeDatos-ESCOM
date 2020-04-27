@@ -11,7 +11,7 @@
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
     struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
-	simbEnt->simbolo=operador;
+	// simbEnt->simbolo=operador;   // Esto no lo podemos hacer, ni siquiera existe la variable operados, borrarlo
     char expresion[100];
     int i;
 
@@ -21,10 +21,16 @@ int main(){
     gets(expresion);
 
     for(i=0;expresion[i]!='\0';i++){
-       switch(simbEnt){
-		   case PARENT_IN:
-		   meter(pila00,simbEnt);
-		   break;
+       switch(expresion[i]){                 // El que nos interesa es el caracter de la cadena
+		case PARENT_IN:
+            /*
+                Igualamos el operador al caracter de entrada, en este caso el parentesis izquierdo,
+                ya que estamos dentro de esta opcion 
+            */
+            simbEnt->operador=expresion[i];
+            simbEnt->prioridad=4;
+            meter(pila00,simbEnt);
+		break;
 		   
 	   }
     }
