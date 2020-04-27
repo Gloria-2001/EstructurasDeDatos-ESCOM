@@ -53,17 +53,33 @@ int main(){
 			case SUMA: case RESTA: case MULT: case DIV: case POT:
 				simbEnt->operador=expresion[i];
 				simbEnt->prioridad=obtenPrioridad(expresion[i]);
-				do{
-					if(Pila_Vacia(pila00)==1 || simbEnt->prioridad > pila00->ptrSig->simb->prioridad)
-						meter(pila00,simbEnt);
-					else{
-						printf("%c",sacar(pila00));
+				if(Pila_Vacia(pila00)==1){
+					meter(pila00,simbEnt);
+				}else{
+					while(Pila_Vacia(pila00)==0){
+						if(Pila_Vacia(pila00)==1 || simbEnt->prioridad > pila00->ptrSig->simb->prioridad){
+							meter(pila00,simbEnt);
+							break;
+						}else{
+							aux=sacar(pila00);
+							if(aux->operador!=PARENT_IN)
+								printf("%c",aux->operador);
+						}
 					}
-				}while(Pila_Vacia(pila00)==0);	
+				}
 			break;	
             default:
                 printf("%c",expresion[i]);
             break;
         }
     }
+
+
+	if(pila00->ptrSig!=NULL)
+		recorrer(pila00);
+
+	free(pila00);	free(aux);
+	free(simbEnt);
+
+	return 0;
 }

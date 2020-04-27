@@ -8,7 +8,6 @@ struct simbolo{
 };
 
 struct nodo{
-	struct nodo *ptrAnt;
     struct simbolo *simb;
 	struct nodo *ptrSig;
 };
@@ -27,7 +26,6 @@ int menu(){
 }
 
 void iniciarPila(struct nodo *ptrCima){
-    ptrCima->ptrAnt=NULL;
     ptrCima->ptrSig=NULL;
 }
 
@@ -38,7 +36,6 @@ struct nodo *CrearNodo(struct simbolo *s){
     ptrNuevo->simb->operador=s->operador;
     ptrNuevo->simb->prioridad=s->prioridad;
     ptrNuevo->ptrSig=NULL;
-    ptrNuevo->ptrAnt=NULL;
 }
 
 void meter(struct nodo *ptrCima,struct simbolo *dato){
@@ -48,7 +45,6 @@ void meter(struct nodo *ptrCima,struct simbolo *dato){
 		ptrCima->ptrSig=nuevo;
 	else{
 		nuevo->ptrSig=ptrCima->ptrSig;
-        ptrCima->ptrSig->ptrAnt=nuevo; 
 		ptrCima->ptrSig=nuevo;
 	}
 }
@@ -59,11 +55,9 @@ struct simbolo *sacar(struct nodo *ptrCima){
 	if(ptrCima->ptrSig->ptrSig==NULL){
 		free(temp);
 		ptrCima->ptrSig=NULL;
-        ptrCima->ptrAnt=NULL;
 	}
 	else{
 		ptrCima->ptrSig=temp->ptrSig;
-        ptrCima->ptrSig->ptrAnt=NULL;
 		free(temp);
 	}
 	return datoOut;//regresa el dato
@@ -72,14 +66,10 @@ struct simbolo *sacar(struct nodo *ptrCima){
 void recorrer(struct nodo *ptrCima){
 	struct nodo *temp;
 	temp=ptrCima;
-	if(ptrCima->ptrSig==NULL)
-		printf("Pila Vacia\n");
-	else{
-		while(temp->ptrSig!=NULL){
-			temp=temp->ptrSig;
-			printf("%c-%d ",temp->simb->operador,temp->simb->prioridad);
-		}
-	}
+    while(temp->ptrSig!=NULL){
+        temp=temp->ptrSig;
+        printf("%c",temp->simb->operador);
+    }
 }
 
 int Pila_Vacia(struct nodo *ptrCima){
