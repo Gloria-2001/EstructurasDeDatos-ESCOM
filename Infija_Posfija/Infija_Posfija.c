@@ -7,6 +7,7 @@
 #define PARENT_IN '('
 #define PARENT_OUT ')'
 
+int obtenPrioridad(char operador);
 
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
@@ -20,17 +21,16 @@ int main(){
     gets(expresion);
 
     for(i=0;expresion[i]!='\0';i++){
-       switch(expresion[i]){                 
-		case PARENT_IN:       
+        switch(expresion[i]){
+        case PARENT_IN:
             simbEnt->operador=expresion[i];
-            simbEnt->prioridad=4;
+            simbEnt->prioridad=0;
             meter(pila00,simbEnt);
-		break;
-		
-		default:
-			printf("%c",expresion[i]);
-		break;
-		   
-	   }
+        break;
+
+        default:
+            printf("%c",expresion[i]);
+        break;
+        }
     }
 }
