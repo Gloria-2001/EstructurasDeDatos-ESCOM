@@ -62,8 +62,16 @@ int main(){
 							break;
 						}else{
 							aux=sacar(pila00);
-							if(aux->operador!=PARENT_IN)
+							if(aux->prioridad==simbEnt->prioridad){
 								printf("%c",aux->operador);
+								meter(pila00,simbEnt);
+								break;
+							}else if(pila00->ptrSig==NULL){
+								meter(pila00,simbEnt);
+								break;
+							}else if(aux->operador!=PARENT_IN){
+								printf("%c",aux->operador);
+							}
 						}
 					}
 				}
@@ -73,7 +81,6 @@ int main(){
             break;
         }
     }
-
 
 	if(pila00->ptrSig!=NULL)
 		recorrer(pila00);
