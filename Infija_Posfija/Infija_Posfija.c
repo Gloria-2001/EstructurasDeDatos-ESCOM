@@ -24,6 +24,7 @@ int obtenPrioridad(char operador){
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
     struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
+	struct simbolo *aux=(struct simbolo*)malloc(sizeof(struct simbolo));
     char expresion[100];
 	char operador;
     int i;
@@ -52,6 +53,13 @@ int main(){
 			case SUMA: case RESTA: case MULT: case DIV: case POT:
 				simbEnt->operador=expresion[i];
 				simbEnt->prioridad=obtenPrioridad(expresion[i]);
+				do{
+					if(Pila_Vacia(pila00)==1 || simbEnt->prioridad > pila00->ptrSig->simb->prioridad)
+						meter(pila00,simbEnt);
+					else{
+						printf("%c",sacar(pila00));
+					}
+				}while(Pila_Vacia(pila00)==0);	
 			break;	
             default:
                 printf("%c",expresion[i]);
