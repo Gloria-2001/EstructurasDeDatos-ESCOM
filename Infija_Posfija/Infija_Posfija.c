@@ -20,6 +20,11 @@ int main(){
     gets(expresion);
 
     for(i=0;expresion[i]!='\0';i++){
-        
+       switch(expresion){
+		   case PARENT_IN:
+		   meter(pila00,simbEnt);
+		   break;
+		   
+	   }
     }
 }
