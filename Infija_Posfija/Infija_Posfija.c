@@ -22,15 +22,15 @@ int main(){
 
     for(i=0;expresion[i]!='\0';i++){
         switch(expresion[i]){
-        case PARENT_IN:
-            simbEnt->operador=expresion[i];
-            simbEnt->prioridad=0;
-            meter(pila00,simbEnt);
-        break;
+            case PARENT_IN:
+                simbEnt->operador=expresion[i];
+                simbEnt->prioridad=0;
+                meter(pila00,simbEnt);
+            break;
 
-        default:
-            printf("%c",expresion[i]);
-        break;
+            default:
+                printf("%c",expresion[i]);
+            break;
         }
     }
 }
