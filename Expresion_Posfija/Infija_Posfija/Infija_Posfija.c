@@ -28,8 +28,21 @@ int obtenPrioridad(char operador){
 	}
 }
 
-void ExpresionPostfija(char expresion){
-	switch(expresion[i]){
+int main(){
+    struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
+    struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
+	struct simbolo *aux=(struct simbolo*)malloc(sizeof(struct simbolo));
+    char expresion[100];
+	char operador;
+    int i;
+
+    iniciarPila(pila00);
+    
+    printf("Ingrese la expresion infija: ");
+    gets(expresion);
+
+    for(i=0;expresion[i]!='\0';i++){
+        switch(expresion[i]){
             case PARENT_IN:
                 simbEnt->operador=expresion[i];
                 simbEnt->prioridad=0;
@@ -74,25 +87,6 @@ void ExpresionPostfija(char expresion){
                 printf("%c",expresion[i]);
             break;
         }
-}
-
-
-int main(){
-    struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
-    struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
-	struct simbolo *aux=(struct simbolo*)malloc(sizeof(struct simbolo));
-    char expresion[100];
-	char operador;
-    int i;
-
-    iniciarPila(pila00);
-    
-    printf("Ingrese la expresion infija: ");
-    gets(expresion);
-
-    for(i=0;expresion[i]!='\0';i++){
-        switch(expresion[i]){
-
     }
 
 	if(pila00->ptrSig!=NULL)
