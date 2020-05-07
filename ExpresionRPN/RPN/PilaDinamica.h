@@ -3,7 +3,7 @@
 #include<string.h>
 
 struct simbolo{
-    int operando;  // Operando
+    float operando;  // Operando
 };
 
 struct nodo{
