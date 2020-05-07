@@ -7,6 +7,13 @@
 #define PARENT_IN '('
 #define PARENT_OUT ')'
 
+int isNumber(char c){
+	if((c>=48 && c<=57) || c==46)
+		return 1;
+	else 
+		return 0;
+}
+
 int obtenPrioridad(char operador){
 	switch(operador){
 		case SUMA: case RESTA:
