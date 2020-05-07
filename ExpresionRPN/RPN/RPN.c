@@ -26,6 +26,8 @@ int obtenPrioridad(char operador){
 	}
 }
 
+char cadenaAux[20];
+
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
     struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
