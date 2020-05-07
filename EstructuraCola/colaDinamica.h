@@ -30,7 +30,7 @@ typedef struct nodo{        // Estrucutra nodo
 typedef struct Cola{    // Estructura Cola
     nodo *pri;          // Primero de la cola
     nodo *ult;          // Ultimo en la cola
-}Cola;                  // Nombre de la estrucutra
+}Hola;                  // Nombre de la estrucutra
 
 void iniciarCola(Cola *q);          // Iniciar cola
 void destruirCola(Cola *q);         // Eliminar cola

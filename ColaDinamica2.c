@@ -39,7 +39,7 @@ int menu(){
 struct nodo *CrearNodo(struct dato *Dato1){
 	struct nodo *ptrnuevo;
 	ptrnuevo=(struct nodo*)malloc(sizeof(struct nodo));
-    ptrnuevo->Dato=(struct dato*)malloc(sizeof(struct dato));   // Te faltó reservar la memoria del apuntador dato dentro del nuevo nodo
+    ptrnuevo->Dato=(struct dato*)malloc(sizeof(struct dato));
 	strcpy(ptrnuevo->Dato->nombre,Dato1->nombre);
 	ptrnuevo->Dato->edad=Dato1->edad;
 	ptrnuevo->Dato->est=Dato1->est;
