@@ -29,6 +29,7 @@ int obtenPrioridad(char operador){
 }
 
 char cadenaAux[20];
+float arregloFlotante[2];
 
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
@@ -37,6 +38,9 @@ int main(){
     char expresion[100];
 	char operador;
     int i, j;
+	
+	arregloFlotante[0]=0.0;
+	arregloFlotante[1]=0.0;
 
     iniciarPila(pila00);
     
@@ -45,58 +49,8 @@ int main(){
 
 	j=0;	// Indice de nuestra cadena auxiliar
     for(i=0;expresion[i]!='\0';i++){
-		if(isNumber(expresion[i])){		// Si el caracter es un número, entonces
-			cadenaAux[j]=expresion[i];	// Cadena en posicion j, guardara dicho caracter y
-			j++;						// aumentara el indice
-		}else{
-			switch(expresion[i]){
-				case PARENT_IN:
-					simbEnt->operador=expresion[i];
-					simbEnt->prioridad=0;
-					meter(pila00,simbEnt);
-				break;
-				case PARENT_OUT:
-					while(Pila_Vacia(pila00)==0){
-						simbEnt=sacar(pila00);
-						if(simbEnt->operador!=PARENT_IN)
-							printf("%c",simbEnt->operador);
-						else 
-							break; 
-					}
-				break; 
-				case SUMA: case RESTA: case MULT: case DIV: case POT:
-					j=0;	// Indice de la cadena auxiliar en cero.
-					simbEnt->operador=expresion[i];
-					simbEnt->prioridad=obtenPrioridad(expresion[i]);
-					if(Pila_Vacia(pila00)==1){
-						meter(pila00,simbEnt);
-					}else{
-						while(Pila_Vacia(pila00)==0){
-							if(Pila_Vacia(pila00)==1 || simbEnt->prioridad > pila00->ptrSig->simb->prioridad){
-								meter(pila00,simbEnt);
-								break;
-							}else{
-								aux=sacar(pila00);
-								if(aux->prioridad==simbEnt->prioridad){
-									printf("%c",aux->operador);
-									meter(pila00,simbEnt);
-									break;
-								}else if(pila00->ptrSig==NULL){
-									meter(pila00,simbEnt);
-									break;
-								}else if(aux->operador!=PARENT_IN){
-									printf("%c",aux->operador);
-								}
-							}
-						}
-					}
-				break;	
-				default:
-					printf("%c",expresion[i]);
-				break;
-			}
-		}
-    }
+		
+	}
 
 	if(pila00->ptrSig!=NULL)
 		recorrer(pila00);
