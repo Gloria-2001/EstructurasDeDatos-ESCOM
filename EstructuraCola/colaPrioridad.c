@@ -2,6 +2,25 @@
 #include<stdlib.h>
 #include<string.h>
 #include "colaPrioridad.h"
+
+/*
+    Generar un numero aleatorio:
+    Primero es necesario importar la libreia time
+        #include <time.h>
+    Después, a la altura de las declaraciones de variables,
+    debemos poner la "semilla" que nos generará sin problemas los
+    numeros aleaotrios:
+        srand(time(NULL))
+    y donde se quiere generar un numero aleatorio, usaremos la siguiente forma
+        numero = rand () % (N-M+1) + M;
+                    ó
+        numero = M + rand () % (N-M+1);
+    El cual, el numero aleatorio está entre M y N (N > M), es decir, si quiero un número entre el
+    10 y el 100, entonces, quedaría de la siguiente forma:
+        numero = rand() % (100-10+1) + 10
+    Que tambien quedaría:
+        numero = rand() % 91 + 10;
+*/
  
 int main(){
 	Dato *MiDato=(Dato*)malloc(sizeof(Dato));        // Reserva de memoria del Dato de entrada
