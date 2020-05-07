@@ -28,6 +28,12 @@ int obtenPrioridad(char operador){
 
 char cadenaAux[20];
 
+char limpiarCadAux(char cadenaAux){
+	int i;
+	for(i=0;i<=20;i++)
+		cadenaAux[i]='0';
+} 
+
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
     struct simbolo *simbEnt=(struct simbolo*)malloc(sizeof(struct simbolo));
@@ -36,10 +42,9 @@ int main(){
 	char operador;
     int i, j;
 	
-
     iniciarPila(pila00);
     
-    printf("Ingrese la expresion infija: ");
+    printf("Ingrese la expresion RPN: ");
     gets(expresion);
 
     for(i=0;expresion[i]!='\0';i++){
