@@ -28,9 +28,9 @@ int obtenPrioridad(char operador){
 
 char cadenaAux[20];
 
-char limpiarCadAux(char cadenaAux){
+void limpiarCadAux(){
 	int i;
-	for(i=0;i<=20;i++)
+	for(i=0;i<20;i++)
 		cadenaAux[i]='0';
 } 
 
@@ -43,6 +43,7 @@ int main(){
     int i, j;
 	
     iniciarPila(pila00);
+	limpiarCadAux();
     
     printf("Ingrese la expresion RPN: ");
     gets(expresion);
