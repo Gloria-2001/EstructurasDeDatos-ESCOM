@@ -3,8 +3,7 @@
 #include<string.h>
 
 struct simbolo{
-    char operador;  // Operador de la expresion
-    int prioridad;  // Prioridad del operador
+    int operando;  // Operando
 };
 
 struct nodo{
@@ -33,8 +32,7 @@ struct nodo *CrearNodo(struct simbolo *s){
 	struct nodo *ptrNuevo;
 	ptrNuevo=(struct nodo*)malloc(sizeof(struct nodo));
     ptrNuevo->simb=(struct simbolo*)malloc(sizeof(struct simbolo));
-    ptrNuevo->simb->operador=s->operador;
-    ptrNuevo->simb->prioridad=s->prioridad;
+    ptrNuevo->simb->operando=s->operando;
     ptrNuevo->ptrSig=NULL;
 }
 
@@ -68,7 +66,7 @@ void recorrer(struct nodo *ptrCima){
 	temp=ptrCima;
     while(temp->ptrSig!=NULL){
         temp=temp->ptrSig;
-        printf("%c",temp->simb->operador);
+        printf("%c",temp->simb->operando);
     }
 }
 
