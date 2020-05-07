@@ -43,11 +43,11 @@ int main(){
     printf("Ingrese la expresion infija: ");
     gets(expresion);
 
-	j=0;
+	j=0;	// Indice de nuestra cadena auxiliar
     for(i=0;expresion[i]!='\0';i++){
-		if(isNumber(expresion[i])){
-			cadenaAux[j]=expresion[i];
-			j++;
+		if(isNumber(expresion[i])){		// Si el caracter es un número, entonces
+			cadenaAux[j]=expresion[i];	// Cadena en posicion j, guardara dicho caracter y
+			j++;						// aumentara el indice
 		}else{
 			switch(expresion[i]){
 				case PARENT_IN:
@@ -65,7 +65,7 @@ int main(){
 					}
 				break; 
 				case SUMA: case RESTA: case MULT: case DIV: case POT:
-					j=0;
+					j=0;	// Indice de la cadena auxiliar en cero.
 					simbEnt->operador=expresion[i];
 					simbEnt->prioridad=obtenPrioridad(expresion[i]);
 					if(Pila_Vacia(pila00)==1){
