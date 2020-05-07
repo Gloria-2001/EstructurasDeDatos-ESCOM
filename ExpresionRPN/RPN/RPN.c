@@ -49,7 +49,16 @@ int main(){
     gets(expresion);
 
     for(i=0;expresion[i]!='\0';i++){
-		
+		if(isNumber(expresion[i])){
+			cadenaAux[j]=expresion[i];
+			j++;
+		}else if(expresion[i]==32){
+			simbEnt.operando=atof(cademaAux);
+			limpiarCadAux();
+			meter(pila00,simbEnt);
+			j=0;
+		}else 
+			hazOperacion();
 	}
 
 	free(pila00);	
