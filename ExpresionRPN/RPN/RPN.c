@@ -63,8 +63,9 @@ int main(){
 			printf("%f\n",simbEnt->operando);
 			meter(pila00,simbEnt);
 			j=0;
-		}else 
-			hazOperacion();
+		}else{
+			
+		}
 	}
 
 	free(pila00);	
