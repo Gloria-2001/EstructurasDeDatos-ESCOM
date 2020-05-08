@@ -32,7 +32,11 @@ void limpiarCadAux(){
 	int i;
 	for(i=0;i<20;i++)
 		cadenaAux[i]='0';
-} 
+}
+
+void hazOperacion(){
+	int i=0;
+}
 
 int main(){
     struct nodo *pila00=(struct nodo*)malloc(sizeof(struct nodo));    // Guardará los operadores
@@ -48,13 +52,15 @@ int main(){
     printf("Ingrese la expresion RPN: ");
     gets(expresion);
 
+	j=0;
     for(i=0;expresion[i]!='\0';i++){
 		if(isNumber(expresion[i])){
 			cadenaAux[j]=expresion[i];
 			j++;
-		}else if(expresion[i]==32){
-			simbEnt.operando=atof(cademaAux);
+		}else if(expresion[i]==' '){
+			simbEnt->operando=atof(cadenaAux);
 			limpiarCadAux();
+			printf("%f\n",simbEnt->operando);
 			meter(pila00,simbEnt);
 			j=0;
 		}else 
