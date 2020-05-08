@@ -64,12 +64,12 @@ int main(){
 			meter(pila00,simbEnt);
 			j=0;
 		}else{
-			struct nodo *contador;
-			contador=pila00;
-			while(contador->ptrSig!=NULL){
-					contador=contador->ptrSig;
-					printf("%c",contador->simb->operando);
-				}
+			if(numElementos(pila00)>=2){
+				// Hacer operacion
+			}else{
+				printf("Error, no hay más de dos numeros en la pila\n");
+				exit(0);
+			}
 		}
 	}
 		
