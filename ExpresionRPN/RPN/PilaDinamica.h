@@ -64,9 +64,9 @@ struct simbolo *sacar(struct nodo *ptrCima){
 void recorrer(struct nodo *ptrCima){
 	struct nodo *temp;
 	temp=ptrCima;
-    while(temp->ptrSig!=NULL){
-        temp=temp->ptrSig;
+    while(temp!=NULL){
         printf("%c",temp->simb->operando);
+		temp=temp->ptrSig;
     }
 }
 
