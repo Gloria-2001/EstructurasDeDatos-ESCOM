@@ -49,7 +49,7 @@ int main(){
     iniciarPila(pila00);
 	limpiarCadAux();
     
-    printf("Ingrese la expresion RPN: ");
+    printf("Ingrese la expresion RPN:\n ");
     gets(expresion);
 
 	j=0;
@@ -64,10 +64,15 @@ int main(){
 			meter(pila00,simbEnt);
 			j=0;
 		}else{
-			
+			struct nodo *contador;
+			contador=pila00;
+			while(contador->ptrSig!=NULL){
+					contador=contador->ptrSig;
+					printf("%c",contador->simb->operando);
+				}
 		}
 	}
-
+		
 	free(pila00);	
 	free(aux);
 	free(simbEnt);
