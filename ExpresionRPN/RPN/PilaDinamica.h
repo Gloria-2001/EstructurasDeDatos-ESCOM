@@ -76,3 +76,14 @@ int Pila_Vacia(struct nodo *ptrCima){
 	else 
 		return 0;
 }
+
+int numElementos(struct nodo *ptrCima){
+	struct nodo *temp;
+	temp=ptrCima;
+	int i=0;
+    while(temp->ptrSig!=NULL){
+        temp=temp->ptrSig;
+		i++;
+    }
+	return i;
+}
