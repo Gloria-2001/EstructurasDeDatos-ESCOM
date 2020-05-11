@@ -22,7 +22,7 @@ Nodo *crearNodo(int dato1){
 void meterDatos(Lista *list,int dato1){
 	Nodo *ptrNuevo=crearNodo(dato1);
 	Nodo *auxNodo=list->pri;
-	if(list->pri->dato > ptrNuevo->dato){
+	if(list->pri-> dato > ptrNuevo->dato){
 		ptrNuevo->ptrSig=list->pri;
 		list->pri=ptrNuevo;
 	} 
@@ -34,7 +34,7 @@ void meterDatos(Lista *list,int dato1){
 		while(auxNodo->ptrSig!=NULL){
 			if(auxNodo->ptrSig->dato > ptrNuevo->dato){
 				ptrNuevo->ptrSig=auxNodo->ptrSig;
-				auxNodo->ptrSig=ptrNuevo;	
+				auxNodo->ptrSig=ptrNuevo;
 			}
 			auxNodo=auxNodo->ptrSig;
 		}
@@ -49,11 +49,17 @@ void recorrer(Lista *list){
 	}while(auxNodo!=NULL);
 }
 
+int buscarDato(Lista *list){
+	
+}
+
 int menu(){
 	int opc;
 	printf("1. Meter\n");
 	printf("2. Recorrer\n");
-	printf("3. Salir\n");
+	printf("3. Buscar\n");
+	printf("4. Sacar\n");
+	printf("5. Salir\n");
 	printf("La opcion elegida fue:");
 	scanf("%d",&opc);
 	return opc;
@@ -75,6 +81,12 @@ int main(){
 				recorrer(list00);
 				break;
 			case 3:
+				
+				break;
+			case 4:
+				
+				break;
+			case 5:
 				exit(0);
 				break;
 			default:
@@ -82,4 +94,5 @@ int main(){
 				break;
 		}
 	}
+	return 0;
 }
