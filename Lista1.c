@@ -17,7 +17,7 @@ void iniciarLista(Lista *list){
 } 
 
 int listaVacia(Lista *list){
-	if(list->pri && list->ult == NULL)
+	if(list->pri==NULL && list->ult == NULL)	// Te falto ponerle el igual igual a NULL en list->pri
 		return 1;
 	else
 		return 0;
