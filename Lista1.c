@@ -9,7 +9,19 @@ typedef struct nodo{
 typedef struct Lista{
 	Nodo *pri;
 	Nodo *ult;
-}Lista; 
+}Lista;
+
+void iniciarLista(Lista *list){
+	list->pri=NULL;
+	list->ult=NULL;
+} 
+
+int listaVacia(Lista *list){
+	if(list->pri && list->ult == NULL)
+		return 1;
+	else
+		return 0;
+}
 
 Nodo *crearNodo(int dato1){
 	Nodo *ptrNuevo;
@@ -22,22 +34,26 @@ Nodo *crearNodo(int dato1){
 void meterDatos(Lista *list,int dato1){
 	Nodo *ptrNuevo=crearNodo(dato1);
 	Nodo *auxNodo=list->pri;
-	if(list->pri->dato > ptrNuevo->dato){
-		ptrNuevo->ptrSig=list->pri;
+	
+	if(listaVacia(list)){
 		list->pri=ptrNuevo;
-	} 
-	else if(list->ult->dato < ptrNuevo->dato){
-		list->ult->ptrSig=ptrNuevo;
 		list->ult=ptrNuevo;
-	}
-	else{
-		while(auxNodo->ptrSig!=NULL){
+	}else{
+		if(list->pri->dato > ptrNuevo->dato){
+			ptrNuevo->ptrSig=list->pri;
+			list->pri=ptrNuevo;
+		} else if(list->ult->dato < ptrNuevo->dato){
+			list->ult->ptrSig=ptrNuevo;
+			list->ult=ptrNuevo;
+		} else{
+			while(auxNodo->ptrSig!=NULL){
 			if(auxNodo->ptrSig->dato > ptrNuevo->dato){
 				ptrNuevo->ptrSig=auxNodo->ptrSig;
 				auxNodo->ptrSig=ptrNuevo;	
 			}
 			auxNodo=auxNodo->ptrSig;
 		}
+	  }
 	}
 }
 
