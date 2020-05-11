@@ -62,6 +62,8 @@ int menu(){
 int main(){
 	Lista *list00=(Lista*)malloc(sizeof(Lista));
 	int miDato;
+	list00->pri=NULL;
+	list00->ult=NULL;
 	
 	while(1){
 		printf("Lista. Elija una opcion.\n");
