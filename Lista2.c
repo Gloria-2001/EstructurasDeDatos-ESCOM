@@ -1,3 +1,8 @@
+//Gloria Oliva Olivares Ménez.
+//Estructuras de Datos.
+//1CM6.
+//Lista, parte 1.
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -9,7 +14,19 @@ typedef struct nodo{
 typedef struct Lista{
 	Nodo *pri;
 	Nodo *ult;
-}Lista; 
+}Lista;
+
+void iniciarLista(Lista *list){
+	list->pri=NULL;
+	list->ult=NULL;
+} 
+
+int listaVacia(Lista *list){
+	if(list->pri==NULL && list->ult == NULL)	
+		return 1;
+	else
+		return 0;
+}
 
 Nodo *crearNodo(int dato1){
 	Nodo *ptrNuevo;
@@ -22,22 +39,26 @@ Nodo *crearNodo(int dato1){
 void meterDatos(Lista *list,int dato1){
 	Nodo *ptrNuevo=crearNodo(dato1);
 	Nodo *auxNodo=list->pri;
-	if(list->pri-> dato > ptrNuevo->dato){
-		ptrNuevo->ptrSig=list->pri;
+	
+	if(listaVacia(list)){
 		list->pri=ptrNuevo;
-	} 
-	else if(list->ult->dato < ptrNuevo->dato){
-		list->ult->ptrSig=ptrNuevo;
 		list->ult=ptrNuevo;
-	}
-	else{
-		while(auxNodo->ptrSig!=NULL){
+	}else{
+		if(list->pri->dato > ptrNuevo->dato){
+			ptrNuevo->ptrSig=list->pri;
+			list->pri=ptrNuevo;
+		} else if(list->ult->dato < ptrNuevo->dato){
+			list->ult->ptrSig=ptrNuevo;
+			list->ult=ptrNuevo;
+		} else{
+			while(auxNodo->ptrSig!=NULL){
 			if(auxNodo->ptrSig->dato > ptrNuevo->dato){
 				ptrNuevo->ptrSig=auxNodo->ptrSig;
-				auxNodo->ptrSig=ptrNuevo;
+				auxNodo->ptrSig=ptrNuevo;	
 			}
 			auxNodo=auxNodo->ptrSig;
 		}
+	  }
 	}
 }
 
@@ -50,7 +71,35 @@ void recorrer(Lista *list){
 }
 
 int buscarDato(Lista *list){
-	
+	int datoBuscado;
+	Nodo *auxNodo=list->pri;
+	printf("Introduzca el dato que quiere buscar\n");
+	scanf("%d",&datoBuscado);
+	while(auxNodo!=NULL){
+		if(datoBuscado == auxNodo->dato){
+			return 1;
+			continue;
+		}
+		auxNodo=auxNodo->ptrSig;
+	}
+}
+
+int sacarDato(Lista *list){
+	Nodo *auxNodo=list->pri;
+	int dato1,datoBuscado;
+	printf("Introduzca el dato que quiere sacar:\n");
+	scanf("%d",&datoBuscado);
+	if(list->pri==datoBuscado){
+		auxNodo=auxNodo->ptrSig;
+		list->pri=auxNodo->ptrSig;
+	}
+	while(auxNodo->ptrSig!=NULL){
+		if(datoBuscado==auxNodo->ptrSig->dato){
+			
+		}
+		auxNodo=auxNodo->ptrSig;
+	}
+	return dato1;
 }
 
 int menu(){
@@ -68,6 +117,8 @@ int menu(){
 int main(){
 	Lista *list00=(Lista*)malloc(sizeof(Lista));
 	int miDato;
+	list00->pri=NULL;
+	list00->ult=NULL;
 	
 	while(1){
 		printf("Lista. Elija una opcion.\n");
@@ -81,7 +132,10 @@ int main(){
 				recorrer(list00);
 				break;
 			case 3:
-				
+				if(buscarDato(list00))
+					printf("El dato si se encuentra\n");
+				else
+					printf("Error. El dato no esta en la lista\n");
 				break;
 			case 4:
 				
@@ -94,5 +148,4 @@ int main(){
 				break;
 		}
 	}
-	return 0;
 }
