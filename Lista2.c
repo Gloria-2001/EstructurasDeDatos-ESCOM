@@ -86,18 +86,19 @@ int buscarDato(Lista *list){
 
 int sacarDato(Lista *list){
 	Nodo *auxNodo=list->pri;
-	int dato1,datoBuscado;
-	printf("Introduzca el dato que quiere sacar:\n");
+	int datoBuscado,dato1;
+	printf("El dato a sacar es:");
 	scanf("%d",&datoBuscado);
-	if(list->pri==datoBuscado){
+	if(list->pri->dato == datoBuscado)
 		auxNodo=auxNodo->ptrSig;
-		list->pri=auxNodo->ptrSig;
-	}
 	while(auxNodo->ptrSig!=NULL){
 		if(datoBuscado==auxNodo->ptrSig->dato){
-			
+			auxNodo=list->pri;
+			auxNodo->ptrSig=auxNodo->ptrSig->ptrSig;
+			dato1=auxNodo->dato;
 		}
 		auxNodo=auxNodo->ptrSig;
+		
 	}
 	return dato1;
 }
@@ -138,7 +139,7 @@ int main(){
 					printf("Error. El dato no esta en la lista\n");
 				break;
 			case 4:
-				
+				printf("El dato sacado es: %d\n",sacarDato(list00));
 				break;
 			case 5:
 				exit(0);
