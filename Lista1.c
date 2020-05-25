@@ -1,3 +1,8 @@
+//Gloria Oliva Olivares Ménez.
+//Estructuras de Datos.
+//1CM6.
+//Lista, parte 1.
+
 #include <stdio.h>
 #include <stdlib.h>
 
