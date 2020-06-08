@@ -3,7 +3,7 @@
 
 struct nodo{
 	int contenido;
-	int altura;
+	int altura;       
 	struct nodo *ptrIzq;
 	struct nodo *ptrDer;
 };
@@ -20,11 +20,15 @@ int altura(struct nodo *ptr){
 	if(ptr==NULL)
 		return 0;
 	else
-		return(ptr->bal);
+		return(ptr->altura);
+}
+
+struct nodo *maximo(int altura1, int altura2){
+	return(altura1 > altura2 ? altura1 : altura2);
 }
 
 void calculaAltura(struct nodo *p){
-	p->bal=1+maximo(altura(p->ptrIzq),altura(p->ptrDer));
+	p->altura=1+maximo(altura(p->ptrIzq),altura(p->ptrDer));
 }
 
 struct nodo *rota_izquierda(struct nodo *ptr){
@@ -60,7 +64,7 @@ struct nodo *balancear(struct nodo *ptr){
 			ptr->ptrDer=rota_derecha(ptr->ptrDer);
 		return rota_izquierda(ptr);
 	}
-	printf("%d\n",ptr->bal)
+	printf("%d\n",ptr->altura)
 }
 
 void insertarNodo(struct nodo *ptrRaiz,int datoEnt){
