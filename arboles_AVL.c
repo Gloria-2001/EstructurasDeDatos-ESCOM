@@ -67,6 +67,7 @@ struct nodo *balancear(struct nodo *ptr){
 	printf("%d\n",ptr->altura);
 }
 
+/*
 void insertarNodo(struct nodo *ptrRaiz,int datoEnt){
 	if(ptrRaiz==NULL){
 		return crearNodo(datoEnt);
@@ -77,6 +78,19 @@ void insertarNodo(struct nodo *ptrRaiz,int datoEnt){
 	else{
 		ptrRaiz->contenido=datoEnt;
 		return balancear(ptrRaiz);
+	}
+}*/
+
+void insertarNodo(struct nodo **ptrRaiz,int datoEnt){
+	if(*ptrRaiz==NULL){
+		*ptrRaiz=crearNodo(datoEnt);
+	}else if(((*ptrRaiz)->contenido)>datoEnt){
+		insertarNodo(&((*ptrRaiz)->ptrIzq),datoEnt);
+	}else if(((*ptrRaiz)->contenido)<datoEnt){
+		insertarNodo(&((*ptrRaiz)->ptrDer),datoEnt);
+	}else{
+		*ptrRaiz=balancear(*ptrRaiz);
+		(*ptrRaiz)->contenido=datoEnt;
 	}
 }
 
