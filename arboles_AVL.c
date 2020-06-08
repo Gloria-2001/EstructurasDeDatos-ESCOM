@@ -13,6 +13,7 @@ struct nodo *crearNodo(int datoEnt){
 	ptrNuevo->contenido=datoEnt;
 	ptrNuevo->ptrIzq=NULL;
 	ptrNuevo->ptrDer=NULL;
+	ptrNuevo->altura=0;
 	return ptrNuevo;
 }
 
@@ -63,8 +64,9 @@ struct nodo *balancear(struct nodo *ptr){
 		if(altura(ptr->ptrDer->ptrIzq) > altura(ptr->ptrDer->ptrDer))
 			ptr->ptrDer=rota_derecha(ptr->ptrDer);
 		return rota_izquierda(ptr);
-	}
-	printf("%d\n",ptr->altura);
+	}else
+		return ptr;
+	//printf("%d\n",ptr->altura);
 }
 
 
@@ -80,19 +82,6 @@ struct nodo* insertarNodo(struct nodo *ptrRaiz,int datoEnt){
 		return balancear(ptrRaiz);
 	}
 }
-
-// void insertarNodo(struct nodo **ptrRaiz,int datoEnt){
-// 	if(*ptrRaiz==NULL){
-// 		*ptrRaiz=crearNodo(datoEnt);
-// 	}else if(((*ptrRaiz)->contenido)>datoEnt){
-// 		insertarNodo(&((*ptrRaiz)->ptrIzq),datoEnt);
-// 	}else if(((*ptrRaiz)->contenido)<datoEnt){
-// 		insertarNodo(&((*ptrRaiz)->ptrDer),datoEnt);
-// 	}else{
-// 		*ptrRaiz=balancear(*ptrRaiz);
-// 		(*ptrRaiz)->contenido=datoEnt;
-// 	}
-// }
 
 void imprimirPreorden(struct nodo *ptrRaiz){
 	if(ptrRaiz!=NULL){
